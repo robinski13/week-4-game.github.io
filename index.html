@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+<!--   For the size of the screen accross the board -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CrystalsCollector!</title>
+
+<!--   Bootstrap -->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans" rel="stylesheet">
+
+  
+</head>
+
+<style>
+
+body {
+  background: blue;
+}
+
+#crystalsCollect {
+  background: orange;
+  padding: 20px;
+  height: 30px;
+  width: 200px;
+  margin-top: 0px;
+  margin-left: 10px;
+}
+
+#req {
+  background: white;
+  color: green;
+  padding: 20px;
+  width: 500px;
+  margin-top: 40px;
+  margin-left: -19px;
+}
+
+#rand {
+  background: green;
+  padding: 20px;
+  margin-top: 320px;
+  float: left;
+  text-align: center;
+
+}
+
+.win {
+  
+  margin-top: 320px;
+  background: white;
+  width: 30%;
+  position: relative;
+  color: white;
+}
+
+#yourScore{
+  background: white;
+  float: right;
+  color: black;
+}
+
+#score{
+  color: white;
+  float: right;
+}
+
+
+</style>
+
+  <body>
+
+<div class="crystalgame">
+ <div class="row">
+    <div class="col-sm-6">
+
+
+  <div id="crystalsCollect">
+    <div class="row">
+      <div class="col-sm-4" >
+        <p id="crystals">CrystalsCollector!</p>
+    </div>
+  </div>
+</div>
+
+  <div id="crystalsCollect">
+    <div class="row">
+      <div class="col-sm-8"  id="requirement">
+        <p id="req">
+         You will be given a random number at the start of the game.<br><br>
+         
+         There are four crytasl below.  By clicking on a crystal you will add a specific amount of points to your total score. <br><br>
+         
+         You win the game by matching the toal score to random number, you loose the game if your total score goes above the random number.<br><br>
+         
+         The value of each crystal is hidden from you until you click on it.<br><br>
+         
+         Each time when the game starts, the game will change the values of each crystals.
+        </p>
+    </div>
+  </div>
+</div>
+
+  <div id="Cook">
+    <div class="row">
+      <div class="col-sm-2" id="rand-num">
+        <p id="rand">39</p>
+    </div>
+
+
+    <div class="win">
+      <div class="col-sm-1" id="status">
+        <p>Wins:</p>
+          <span id="wins"></span>
+        </p>
+
+        <p> Losses: 
+          <span id="losses"></span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="row">
+      <div class="col-sm-1"  id="crystal-icon1">
+        <img src="https://thumbs.dreamstime.com/z/round-frame-cartoon-crystals-place-text-vector-element-banners-websites-design-printed-products-greeting-69920238.jpg" alt="crystal"  height="45" width="45">
+      </div>
+
+      <div class="col-sm-1" id="crystal-icon2">
+        <img src="http://icons.iconarchive.com/icons/raindropmemory/legendora/256/Crystal-icon.png" alt="crystal"  height="45" width="45">
+      </div>
+
+      <div class="col-sm-1" id="crystal-icon3"> 
+        <img src="http://vignette3.wikia.nocookie.net/mundogaturro/images/0/08/CRISTAL_VERDE_DI.png/revision/latest?cb=20141208164645&path-prefix=es" alt="crystal"  height="45" width="45">
+      </div>
+
+      <div class="col-sm-1"  id="crystal-icon4">
+        <img src="https://previews.123rf.com/images/larser/larser1204/larser120400019/13093419-Cartoon-illustration-of-a-blue-diamond-Stock-Vector-diamond-shape.jpg" alt="crystal"  height="45" width="45">
+      </div>
+
+      <div class="score"  <p id="yourScore"> Your total score is: </p>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div id="crystalvalue">
+      <div class="row">
+        <div class="col-sm-3"  id="c-value"> 
+          <p id="value">0 </p>
+        </div>
+      </div>
+    </div>
+</div>
+</div> <!-- closes crystal-icon div -->
+
+    <script>
+
+
+    var crystalvalue1 = Math.floor(Math.random() * 10);
+    var crystalvalue2 = Math.floor(Math.random() * 10);
+    var crystalvalue3 = Math.floor(Math.random() * 10);
+    var crystalvalue4 = Math.floor(Math.random() * 10);
+
+    var totalvalue = 0;
+    var goalvalue = Math.floor(Math.random() * 100);
+    var wins = 0;
+    var losses = 0;
+
+
+   
+
+   
+
+
+      $(document).ready(function(){
+
+    var crystalvalue1 = Math.floor(Math.random() * 10);
+    var crystalvalue2 = Math.floor(Math.random() * 10);
+    var crystalvalue3 = Math.floor(Math.random() * 10);
+    var crystalvalue4 = Math.floor(Math.random() * 10);
+
+    var totalvalue = 0;
+    var goalvalue = Math.floor(Math.random() * 101 + 19);
+    var wins = 0;
+    var losses = 0;
+
+    function reset(){
+      goalvalue =Math.floor(Math.random()*101+19);
+      $('#rand').text(goalvalue);
+      crystalvalue1= Math.floor(Math.random()*10);
+      crystalvalue2= Math.floor(Math.random()*10);
+      crystalvalue3= Math.floor(Math.random()*10);
+      crystalvalue4= Math.floor(Math.random()*10);
+      totalvalue = 0;
+      $('#rand').text(goalvalue);
+
+    }
+
+        function won(){
+        alert("You won");
+        wins++; 
+        $('#wins').text(wins);
+        reset();
+}
+
+        function loss(){
+        alert ("You lose");
+        losses++;
+        $('#losses').text(losses);
+        reset()
+}
+     
+      
+
+
+
+        $('#rand').text(goalvalue);
+
+
+        $('#crystal-icon1').on("click", function(){
+          totalvalue += crystalvalue1;
+          $('#yourScore').text(totalvalue);
+           if (totalvalue == goalvalue){
+          won();
+        }
+        else if ( totalvalue > goalvalue){
+          loss();
+
+        }
+
+      })
+         
+
+      
+
+        $('#crystal-icon2').on("click", function(){
+          totalvalue += crystalvalue2;
+          $('#yourScore').text(totalvalue);
+            if (totalvalue == goalvalue){
+          won();
+        }
+        else if ( totalvalue > goalvalue){
+          loss();
+
+        }
+
+        })
+          
+
+
+
+        $('#crystal-icon3').on("click", function(){
+          totalvalue += crystalvalue3;
+          $('#yourScore').text(totalvalue);
+            if (totalvalue == goalvalue){
+          won();
+        }
+        else if ( totalvalue > goalvalue){
+          loss();
+
+        }
+
+        })
+         
+
+
+        $('#crystal-icon4').on("click", function(){
+          totalvalue += crystalvalue1;
+          $('#yourScore').text(totalvalue);
+           if (totalvalue == goalvalue){
+          won();
+        }
+        else if ( totalvalue > goalvalue){
+          loss();
+
+        }
+
+      })
+    
+ 
+})
+
+
+
+
+    
+
+
+
+
+    </script>
+  </div> <!-- closes col-sm-6 div -->
+</div> <!-- closes row" -->
+</div> <!-- closes crystalgame div -->
+  </body>
+</html>
